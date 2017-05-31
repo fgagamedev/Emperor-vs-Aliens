@@ -1,7 +1,7 @@
 #include "mainGUI.h"
 
 void MainGUI::loadImage(){
-    background = Image::load("/opt/Emperor_vs_Aliens/data/images/MainMenu.png");
+    background = Image::load("data/images/MainMenu.png");
 }
 
 void MainGUI::beDone(){

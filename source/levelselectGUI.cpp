@@ -1,7 +1,7 @@
 #include "levelselectGUI.h"
 
 void LevelSelectGUI::loadImage(){
-    background = Image::load("/opt/Emperor_vs_Aliens/data/images/LevelSelectMenu.png");
+    background = Image::load("data/images/LevelSelectMenu.png");
 }
 
 void LevelSelectGUI::loadSubmenus(){

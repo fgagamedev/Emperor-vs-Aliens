@@ -34,18 +34,18 @@ namespace edge {
 
 	void Display::update(){
 		SDL_Text text(infoDisplayed->c_str());
-		image = text.render(font, color);	
+		image = text.render(font, color);
 	}
 
 	void
 	Display::init(int size){
-		font = Font::load("/opt/Emperor_vs_Aliens/data/fonts/tribal.ttf", size);
+		font = Font::load("data/fonts/tribal.ttf", size);
 		if (!font) {
 			cerr << "Erro no carregamento da fonte" << endl;
 			return;
 		}
 		/*
-		Font *font = Font::load("/opt/Emperor_vs_Aliens/data/fonts/tribal.ttf", 200);
+		Font *font = Font::load("data/fonts/tribal.ttf", 200);
 
 		if (!font) {
 			cerr << "Erro no carregamento da fonte" << endl;
@@ -56,18 +56,18 @@ namespace edge {
 		SDL_Text text(s);
 		Color gold(220, 220, 55);
 
-		victoryMessage = text.render(font, gold);		
+		victoryMessage = text.render(font, gold);
 		victoryMessagePosition.x = 120;
 		victoryMessagePosition.y = 240;
 
 		text.set("Defeat");
 		Color red(255, 0, 0);
-		defeatMessage = text.render(font, red);		
+		defeatMessage = text.render(font, red);
 		defeatMessagePosition.x = 180;
 		defeatMessagePosition.y = 240;
 
 		delete font;
-		font = Font::load("/opt/Emperor_vs_Aliens/data/fonts/Tribal.ttf", 100);
+		font = Font::load("data/fonts/Tribal.ttf", 100);
 
 		Color white(255, 255, 255);
 		text.set("Player X");

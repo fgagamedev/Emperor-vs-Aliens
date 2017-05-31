@@ -23,11 +23,11 @@ void Menu::init(){
 }
 
 void Menu::update(){
-    if(!mPosition) 
+    if(!mPosition)
 		frameCount = 0;
 	else
 		frameCount += frameCount < 7 ? 1 : 0;
-	mResource.x = mResource.width * frameCount;    
+	mResource.x = mResource.width * frameCount;
 }
 
 void Menu::loadRectangle(){
@@ -38,7 +38,7 @@ void Menu::loadRectangle(){
 }
 
 void Menu::loadImage(){
-	image = Image::load("/opt/Emperor_vs_Aliens/data/images/InGameMenu.png");
+	image = Image::load("data/images/InGameMenu.png");
 }
 
 void Menu::loadButtons(){
@@ -59,16 +59,16 @@ bool Menu::handleClick(int index){
 
     switch(index){
     case 0:
-        option = OPTION_01; 
-    break; 
+        option = OPTION_01;
+    break;
     case 1:
-        option = OPTION_02; 
+        option = OPTION_02;
     break;
     case 2:
-        option = OPTION_03; 
+        option = OPTION_03;
     break;
     case 3:
-        option = OPTION_04; 
+        option = OPTION_04;
     break;
     default:
         option = NO_OPTION;

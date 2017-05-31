@@ -67,9 +67,9 @@ void HUD::updateTime(){
    stringstream ss;
    if(*time <= 0)
     ss << "00'000";
-   else 
+   else
     ss << setfill('0') << setw(2) << ((*time)/1000) << "'" << setfill('0') << setw(3) << ((*time)%1000);
-    
+
    timeInfo = ss.str();
 }
 
@@ -77,7 +77,7 @@ void HUD::updateResource(){
    stringstream ss;
 
    ss << setfill('0') << setw(2) << *resource;
-    
+
    resourceInfo = ss.str();
 }
 void HUD::updateWavesLeft(){
@@ -91,11 +91,11 @@ void HUD::loadRectangle(){
     mResource.width = 0;
     mResource.height= 0;
     mResource.x     = 0;
-    mResource.y     = 0;   
+    mResource.y     = 0;
 }
 
 void HUD::loadImage(){
-    image = Image::load("/opt/Emperor_vs_Aliens/data/images/InGameHUD.png");
+    image = Image::load("data/images/InGameHUD.png");
 }
 
 void HUD::loadButtons(){
@@ -107,13 +107,13 @@ void HUD::loadButtons(){
 bool HUD::handleClick(int index){
     switch(index){
     case 0:
-        option = OPTION_01; 
-    break; 
+        option = OPTION_01;
+    break;
     case 1:
-        option = OPTION_02; 
+        option = OPTION_02;
     break;
     case 2:
-        option = OPTION_03; 
+        option = OPTION_03;
     break;
     default:
         option = NO_OPTION;

@@ -28,8 +28,8 @@ namespace edge {
             this->surface = surface;
         }
 
-        display 	     = Image::load("/opt/Emperor_vs_Aliens/data/images/unitdisplay.png");
- 		currentHPDisplay = Image::load("/opt/Emperor_vs_Aliens/data/images/currentHPDisplay.png");
+        display 	     = Image::load("data/images/unitdisplay.png");
+ 		currentHPDisplay = Image::load("data/images/currentHPDisplay.png");
     }
 
     SDL_Canvas::~SDL_Canvas() {
@@ -49,25 +49,25 @@ namespace edge {
 
     void SDL_Canvas::drawImage(const Image *image){
         const SDL_Image *sdlimage = dynamic_cast<const SDL_Image *>(image);
-        
+
         SDL_BlitSurface(sdlimage->surface, NULL, surface, NULL);
-    
+
     }
 
     void SDL_Canvas::drawImage(const Image *image, const Point& position){
         const SDL_Image *sdlimage = dynamic_cast<const SDL_Image *>(image);
-        SDL_Rect *source = NULL; 
-        
+        SDL_Rect *source = NULL;
+
         SDL_Rect dest;
         dest.x = position.x;
         dest.y = position.y;
         dest.w = sdlimage->width();
         dest.h = sdlimage->height();
-        
+
         SDL_BlitSurface(sdlimage->surface, source, surface, &dest);
-    
+
     }
-    
+
     int SDL_Canvas::width() const {
         return surface->w;
     }
@@ -79,11 +79,11 @@ namespace edge {
     void SDL_Canvas::update() {
         SDL_Flip(surface);
     }
-	
-	void 
+
+	void
 	SDL_Canvas::drawImage(const Image *image, const Rectangle& baseRect, const Point& position){
 		const SDL_Image *sdlimage = dynamic_cast<const SDL_Image *>(image);
- 
+
 		SDL_Rect srcrect;
 		srcrect.x = baseRect.x;
 		srcrect.y = baseRect.y;
@@ -95,12 +95,12 @@ namespace edge {
         rect.y = position.y;
         rect.w = sdlimage->width();
         rect.h = sdlimage->height();
-        
+
         SDL_BlitSurface(sdlimage->surface,&srcrect, surface, &rect);
 	}
-	
+
 	void SDL_Canvas::drawBottomGrass(const EnviromentElement* bottomGrass){
-	
+
 		Point position;
 
 		position.x = bottomGrass->mPosition->x;
@@ -108,52 +108,52 @@ namespace edge {
 
 		drawImage(bottomGrass->image, bottomGrass->mResource, position);
 	}
-	
-	void SDL_Canvas::drawBackground(const Image* background) 
+
+	void SDL_Canvas::drawBackground(const Image* background)
 	{
 		drawImage(background);
 	}
-	
+
 	void SDL_Canvas::drawMenu(const Menu& element){
 
 		Point position;
-		
+
 		position.x = (element.mPosition->x)*112+134-(element.mResource.width-112);
 		position.y = (element.mPosition->y)*112+409-(element.mResource.height-112/2);
 
 		drawImage(element.image, element.mResource, position);
 	}
 
-	void SDL_Canvas::drawMenu(const HUD& element){	
+	void SDL_Canvas::drawMenu(const HUD& element){
 		drawImage(element.image);
 	}
-	
-	void SDL_Canvas::drawDisplay(const Display& element){	
+
+	void SDL_Canvas::drawDisplay(const Display& element){
 		drawImage(element.image,element.position);
 	}
-	
+
 	void SDL_Canvas::drawElement(const Element& element){
-	
+
 		Point position;
-		
+
 		position.x = (element.mPosition->x)*112+134-(element.mResource.width-112);
 		position.y = (element.mPosition->y)*112+409-(element.mResource.height-112);
 
 		drawImage(element.image, element.mResource, position);
 	}
-	
+
 	void SDL_Canvas::drawUnit(Unit& element){
-		
+
 		Point position;
-		
+
 		if(element.status == UNIT_MOVING)
 		{
                     int timeTraveling = element.travelTime - (element.ARRIVAL_TIME - Timer::get_currentFrameTick());
                     position.x = (element.mPosition->x)*112 + element.speed.x * (timeTraveling) +134-(element.mResource.width-112);
-                    position.y = (element.mPosition->y)*112 + element.speed.y * (timeTraveling) +409-(element.mResource.height-112);	         
-		}		
+                    position.y = (element.mPosition->y)*112 + element.speed.y * (timeTraveling) +409-(element.mResource.height-112);
+		}
 		else
-		{        
+		{
                     position.x = (element.mPosition->x)*112+134-(element.mResource.width-112);
                     position.y = (element.mPosition->y)*112+409-(element.mResource.height-112);
 		}
@@ -168,29 +168,29 @@ namespace edge {
 		statusDisplay.x 	= 0;
 		statusDisplay.y 	= 0;
 		drawImage(display,statusDisplay,position);
-		
+
 		statusDisplay.width = 34 + (int)(67 * (1.0-(maxHP - currentHP*1.0)/maxHP));
-		drawImage(currentHPDisplay,statusDisplay,position); 
+		drawImage(currentHPDisplay,statusDisplay,position);
 	}
-	
-	void SDL_Canvas::drawEnviroment(vector<EnviromentElement>& enviroment) 
-	{	
+
+	void SDL_Canvas::drawEnviroment(vector<EnviromentElement>& enviroment)
+	{
 		vector<EnviromentElement>::iterator it;
 		for(it = enviroment.begin(); it != enviroment.end(); it++)
 			drawElement(*it);
 	}
-	
-	void SDL_Canvas::drawUnits(list<Unit*>& units) 
-	{	
+
+	void SDL_Canvas::drawUnits(list<Unit*>& units)
+	{
 		list<Unit*>::iterator it;
 		for(it = units.begin(); it != units.end(); it++)
 			drawUnit(**it);
 	}
-	
+
 	void SDL_Canvas::drawBuilding(Building& element){
-	
+
 		Point position;
-		
+
 		position.x = 0;
 		position.y = 0;
 

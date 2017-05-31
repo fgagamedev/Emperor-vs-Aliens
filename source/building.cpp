@@ -4,7 +4,7 @@
 using namespace std;
 
 Building::Building(int hp, int damageReduction)
-: Element(){	
+: Element(){
 	init();
 	MAX_HITPOINTS	 = hp;
 	HITPOINTS 		 = hp;
@@ -28,15 +28,15 @@ void Building::loadRectangle(){
 }
 
 void Building::loadImage(){
-	image = Image::load("/opt/Emperor_vs_Aliens/data/images/wall.png");
+	image = Image::load("data/images/wall.png");
 }
 
 void Building::update(){
 	frameCount = (int)((MAX_HITPOINTS - HITPOINTS)*10.0/(MAX_HITPOINTS)) % 10;
 	mResource.x = mResource.width * frameCount;
 	mResource.y = 0;
-	
-	if(destroyed)	 onDestruction();	
+
+	if(destroyed)	 onDestruction();
 }
 
 void Building::receiveDamage(int damage){

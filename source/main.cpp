@@ -26,14 +26,14 @@ using namespace edge;
   Mix_Chunk *music2 = NULL;
 
     void makeSound(){
-       
-	music = Mix_LoadWAV("/opt/Emperor_vs_Aliens/data/sounds/sound_of_death.ogg");
+
+	music = Mix_LoadWAV("data/sounds/sound_of_death.ogg");
 	Mix_PlayChannel(-1,music, -1);
     }
      void makeSound2(){
-        
-        
-	music2 = Mix_LoadWAV("/opt/Emperor_vs_Aliens/data/sounds/thunder/0.ogg");
+
+
+	music2 = Mix_LoadWAV("data/sounds/thunder/0.ogg");
 	Mix_PlayChannel(-1,music2, 0);
     }
 
@@ -41,19 +41,19 @@ using namespace edge;
 int main(){
 
     GameConfig gameConfig;
-    Game *game = 0; 
+    Game *game = 0;
     GUI *gui = GUIFactory::create_GUI(GUI_MAIN);
 
-    
+
     do{
-        try 
+        try
         {
             gui->init(gameConfig);
-                    
+
                     Mix_OpenAudio( 22050,AUDIO_S16SYS,2,640 );
               makeSound();
               makeSound2();
-       
+
             gui->loop();
             gui->shutdown();
         }
@@ -66,7 +66,7 @@ int main(){
         if(gameConfig.exit) break;
 
         game = (GameFactory::create_game(gameConfig.difficulty));
-        try 
+        try
         {
             game->init(gameConfig);
             game->loop();
